@@ -6,6 +6,15 @@ Built for **TechBlitz 2026 Hackathon** by Team PKG.
 
 ---
 
+## 📌 Description & Highlights
+
+### **Clinico — WhatsApp-based clinic appointment system** | *Next js, FastAPI, Redis, Baileys.js, Sarvam AI*
+
+• **Built a multilingual WhatsApp-based appointment automation system** for clinics and hospitals, demonstrating proficiency in Conversational AI and Healthcare Tech.
+• **Integrated conversational voice workflows:** patients could send voice notes, which were transcribed via speech-to-text pipelines and processed using Sarvam AI, simplifying patient interaction.
+
+---
+
 ## System Overview
 
 **Clinico** is a comprehensive healthcare management system with three distinct user roles:
