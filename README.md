@@ -1,17 +1,15 @@
-# 🏥 Clinico — Healthcare Management System
+# 🏥 Clinico: WhatsApp-Based Appointment System
 
-Full-stack clinic scheduling and management platform with **multi-channel support** (Web + WhatsApp).
-
-Built for **TechBlitz 2026 Hackathon** by Team PKG.
+A multilingual, voice-enabled appointment automation platform for clinics and hospitals, featuring multi-channel support (**Web + WhatsApp**).
 
 ---
 
-## 📌 Description & Highlights
+## 📌 Project Overview & Key Highlights
 
-### **Clinico — WhatsApp-based clinic appointment system** | *Next js, FastAPI, Redis, Baileys.js, Sarvam AI*
+> **Tech Stack:** Next.js | FastAPI | Redis | Baileys.js | Sarvam AI
 
-• **Built a multilingual WhatsApp-based appointment automation system** for clinics and hospitals, demonstrating proficiency in Conversational AI and Healthcare Tech.
-• **Integrated conversational voice workflows:** patients could send voice notes, which were transcribed via speech-to-text pipelines and processed using Sarvam AI, simplifying patient interaction.
+- 🌐 **Multilingual WhatsApp Automation:** Built an automated clinic appointment system for patients, doctors, and receptionists on WhatsApp, leveraging Conversational AI tailored for Healthcare Tech.
+- 🎙️ **Conversational Voice Workflows:** Integrated natural voice interaction allowing patients to send voice notes, which are transcribed via Speech-to-Text pipelines and processed using **Sarvam AI** for effortless booking and inquiries.
 
 ---
 
