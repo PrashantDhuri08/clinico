@@ -176,6 +176,127 @@ PKG_TechBlitz26/
 
 ---
 
+## 💬 WhatsApp Channel Sample Chat Flows
+
+Below are real sample chat interactions demonstrating patient workflows over WhatsApp.
+
+### 1. 🏥 Welcome Menu (`hi`)
+
+> **Patient:** `hi`  
+> **Clinico Bot:**  
+> 🏥 *Welcome to Clinico!*  
+>  
+> Please choose your language:  
+> 1️⃣ English  
+> 2️⃣ Hindi  
+>  
+> Available commands:  
+> ▸ *register* — Register with your name  
+> ▸ *doctors* — View available doctors  
+> ▸ *slots <doctor number>* — View available slots  
+> ▸ *book <slot number>* — Book an appointment  
+> ▸ *cancel <appointment id>* — Cancel appointment  
+> ▸ *reschedule <appointment id> <slot number>* — Reschedule  
+> ▸ *hi* — Show this menu  
+
+---
+
+### 2. 📲 Patient Registration & OTP Auth (`register`)
+
+> **Patient:** `register`  
+> **Clinico Bot:**  
+> 📲 *OTP sent to 9876543210*  
+>  
+> Reply with: *register <6-digit OTP>*  
+> Example: `register 123456`  
+>  
+> **Patient:** `register 482910`  
+> **Clinico Bot:**  
+> ✅ *Registration successful!*  
+>  
+> Welcome, Rahul Sharma!  
+> You are now logged in. Use *doctors* to view available doctors.  
+
+---
+
+### 3. 👨‍⚕️ Listing Doctors & Checking Slots (`doctors` & `slots`)
+
+> **Patient:** `doctors`  
+> **Clinico Bot:**  
+> 👨‍⚕️ *Available Doctors:*  
+>  
+> 1. *Dr. Priya Patel* — Cardiology  
+> 2. *Dr. Rajesh Kumar* — Orthopedics  
+>  
+> To view slots, type: *slots <number>*  
+> Example: `slots 1`  
+>  
+> **Patient:** `slots 1`  
+> **Clinico Bot:**  
+> 📅 *Available slots for Dr. Priya Patel* (2026-08-17):  
+>  
+> 1. 🕐 10:00 AM — 10:30 AM  
+> 2. 🕐 11:30 AM — 12:00 PM  
+> 3. 🕐 03:00 PM — 03:30 PM  
+>  
+> To book, type: *book <slot number>*  
+> Example: `book 2`  
+
+---
+
+### 4. 📅 Booking an Appointment (`book`)
+
+> **Patient:** `book 1`  
+> **Clinico Bot:**  
+> ✅ *Appointment Confirmed!*  
+>  
+> 🆔 ID: `appt_8f3a91b`  
+> 🕐 Time: 10:00 AM  
+> 📋 Status: CONFIRMED  
+>  
+> To cancel: *cancel appt_8f3a91b*  
+> To reschedule: *reschedule appt_8f3a91b <new slot>*  
+
+---
+
+### 5. 🔄 Rescheduling & Cancellation (`reschedule` & `cancel`)
+
+> **Patient:** `slots 1`  
+> **Clinico Bot:**  
+> 📅 *Available slots for Dr. Priya Patel* (2026-08-17):  
+> 1. 🕐 11:30 AM — 12:00 PM  
+> 2. 🕐 03:00 PM — 03:30 PM  
+>  
+> **Patient:** `reschedule appt_8f3a91b 2`  
+> **Clinico Bot:**  
+> ✅ *Appointment Rescheduled!*  
+>  
+> 🆔 ID: `appt_8f3a91b`  
+> 🕐 New Time: 03:00 PM  
+> 📋 Status: RESCHEDULED  
+>  
+> **Patient:** `cancel appt_8f3a91b`  
+> **Clinico Bot:**  
+> ✅ *Appointment Cancelled*  
+>  
+> 🆔 ID: `appt_8f3a91b`  
+> 📋 Status: CANCELLED  
+
+---
+
+### 🎙️ 6. Multilingual Voice Note Booking (Powered by Sarvam AI)
+
+> **Patient:** 🎙️ *(Sends Voice Note in Hindi: "Dr. Priya Patel ke paas aaj 3 baje ka slot book kar do")*  
+> **Clinico Bot:**  
+> 🗣️ *Voice Transcribed (Sarvam AI):* "Book slot at 3 PM today with Dr. Priya Patel"  
+>  
+> ✅ *Appointment Confirmed!*  
+> 🆔 ID: `appt_992b41c`  
+> 🕐 Time: 03:00 PM  
+> 📋 Status: CONFIRMED  
+
+---
+
 ## API Documentation
 
 See **[backend/README.md](backend/README.md)** for complete API reference (powered by Bun.js).
