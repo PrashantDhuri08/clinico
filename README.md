@@ -178,11 +178,11 @@ PKG_TechBlitz26/
 
 ## 💬 WhatsApp Channel Sample Chat Flows
 
-Below are real sample chat interactions demonstrating patient workflows over WhatsApp.
+Below are live sample chat interactions captured directly from the Clinico WhatsApp bot interface:
 
-### 1. 🏥 Welcome Menu (`hi`)
+### 1. 🏥 Welcome Menu (`Hi`)
 
-> **Patient:** `hi`  
+> **Patient:** `Hi`  
 > **Clinico Bot:**  
 > 🏥 *Welcome to Clinico!*  
 >  
@@ -201,99 +201,55 @@ Below are real sample chat interactions demonstrating patient workflows over Wha
 
 ---
 
-### 2. 📲 Patient Registration & OTP Auth (`register`)
+### 2. 👨‍⚕️ View Available Doctors (`Doctors`)
 
-> **Patient:** `register`  
+> **Patient:** `Doctors`  
 > **Clinico Bot:**  
-> 📲 *OTP sent to 9876543210*  
+> 👨‍⚕️ *Available Doctors:*  
+>  
+> 1. *Dr. Smith* — General Physician  
+>  
+> To view slots, type: *slots <number>*  
+> Example: *slots 1*  
+
+---
+
+### 3. 📅 Checking Slots Help (`Slots`)
+
+> **Patient:** `Slots`  
+> **Clinico Bot:**  
+> Please specify a doctor number or specialization.  
+> Example: *slots 1* or *slots cardiologist*  
+>  
+> Type *doctors* to see the list.  
+
+---
+
+### 4. 📲 Patient OTP Registration & Verification (`Register`)
+
+> **Patient:** `Register`  
+> **Clinico Bot:**  
+> 📲 *OTP sent to 98XXXXXXXX*  
 >  
 > Reply with: *register <6-digit OTP>*  
-> Example: `register 123456`  
+> Example: *register 123456*  
 >  
-> **Patient:** `register 482910`  
+> 🔑 *Dev OTP: 103317*  
+>  
+> **Patient:** `Register 103317`  
 > **Clinico Bot:**  
 > ✅ *Registration successful!*  
 >  
-> Welcome, Rahul Sharma!  
+> Welcome, *9892890108*!  
 > You are now logged in. Use *doctors* to view available doctors.  
 
 ---
 
-### 3. 👨‍⚕️ Listing Doctors & Checking Slots (`doctors` & `slots`)
+### 🎙️ 5. Voice Message Workflow
 
-> **Patient:** `doctors`  
+> **Patient:** 🎙️ *(Audio Message: 0:03)*  
 > **Clinico Bot:**  
-> 👨‍⚕️ *Available Doctors:*  
->  
-> 1. *Dr. Priya Patel* — Cardiology  
-> 2. *Dr. Rajesh Kumar* — Orthopedics  
->  
-> To view slots, type: *slots <number>*  
-> Example: `slots 1`  
->  
-> **Patient:** `slots 1`  
-> **Clinico Bot:**  
-> 📅 *Available slots for Dr. Priya Patel* (2026-08-17):  
->  
-> 1. 🕐 10:00 AM — 10:30 AM  
-> 2. 🕐 11:30 AM — 12:00 PM  
-> 3. 🕐 03:00 PM — 03:30 PM  
->  
-> To book, type: *book <slot number>*  
-> Example: `book 2`  
-
----
-
-### 4. 📅 Booking an Appointment (`book`)
-
-> **Patient:** `book 1`  
-> **Clinico Bot:**  
-> ✅ *Appointment Confirmed!*  
->  
-> 🆔 ID: `appt_8f3a91b`  
-> 🕐 Time: 10:00 AM  
-> 📋 Status: CONFIRMED  
->  
-> To cancel: *cancel appt_8f3a91b*  
-> To reschedule: *reschedule appt_8f3a91b <new slot>*  
-
----
-
-### 5. 🔄 Rescheduling & Cancellation (`reschedule` & `cancel`)
-
-> **Patient:** `slots 1`  
-> **Clinico Bot:**  
-> 📅 *Available slots for Dr. Priya Patel* (2026-08-17):  
-> 1. 🕐 11:30 AM — 12:00 PM  
-> 2. 🕐 03:00 PM — 03:30 PM  
->  
-> **Patient:** `reschedule appt_8f3a91b 2`  
-> **Clinico Bot:**  
-> ✅ *Appointment Rescheduled!*  
->  
-> 🆔 ID: `appt_8f3a91b`  
-> 🕐 New Time: 03:00 PM  
-> 📋 Status: RESCHEDULED  
->  
-> **Patient:** `cancel appt_8f3a91b`  
-> **Clinico Bot:**  
-> ✅ *Appointment Cancelled*  
->  
-> 🆔 ID: `appt_8f3a91b`  
-> 📋 Status: CANCELLED  
-
----
-
-### 🎙️ 6. Multilingual Voice Note Booking (Powered by Sarvam AI)
-
-> **Patient:** 🎙️ *(Sends Voice Note in Hindi: "Dr. Priya Patel ke paas aaj 3 baje ka slot book kar do")*  
-> **Clinico Bot:**  
-> 🗣️ *Voice Transcribed (Sarvam AI):* "Book slot at 3 PM today with Dr. Priya Patel"  
->  
-> ✅ *Appointment Confirmed!*  
-> 🆔 ID: `appt_992b41c`  
-> 🕐 Time: 03:00 PM  
-> 📋 Status: CONFIRMED  
+> ⏳ *Listening to your voice message...*  
 
 ---
 
