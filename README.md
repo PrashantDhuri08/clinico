@@ -1,30 +1,33 @@
 # 🏥 Clinico: WhatsApp-Based Appointment System
 
-A multilingual, voice-enabled appointment automation platform for clinics and hospitals, featuring multi-channel support (**Web + WhatsApp**).
+A multilingual, voice-enabled appointment automation platform for clinics and hospitals, featuring multi-channel support (**Web + WhatsApp**) and powered by a **Bun.js** runtime backend.
 
 ---
 
 ## 📌 Project Overview & Key Highlights
 
-> **Tech Stack:** Next.js | FastAPI | Redis | Baileys.js | Sarvam AI
+> **Tech Stack:** Bun.js | React | PostgreSQL | Redis | Baileys.js | Sarvam AI
 
-- 🌐 **Multilingual WhatsApp Automation:** Built an automated clinic appointment system for patients, doctors, and receptionists on WhatsApp, leveraging Conversational AI tailored for Healthcare Tech.
-- 🎙️ **Conversational Voice Workflows:** Integrated natural voice interaction allowing patients to send voice notes, which are transcribed via Speech-to-Text pipelines and processed using **Sarvam AI** for effortless booking and inquiries.
+- 📱 **In-App Receptionist WhatsApp Pairing:** Receptionists log into the web application, where a dynamic QR code renders directly on the Receptionist web interface. Once scanned, the system connects their WhatsApp number as the clinic's bot endpoint, automatically persisting the connection state in PostgreSQL.
+- 💬 **Patient Messaging via Receptionist Number:** Patients simply message the registered Receptionist's WhatsApp number to book, reschedule, or check slot availability automatically via text or voice.
+- 🌐 **Multilingual WhatsApp Automation:** Leverages Conversational AI tailored for Healthcare Tech to handle multi-patient scheduling and automated clinic workflows.
+- 🎙️ **Conversational Voice Workflows:** Patients can send voice notes over WhatsApp, which are transcribed via Speech-to-Text pipelines and processed using **Sarvam AI** for effortless booking and inquiries.
+- ⚡ **Bun.js Backend Engine:** High-performance REST API and scheduling backend built with Bun.js, TypeScript, and Prisma ORM.
 
 ---
 
 ## System Overview
 
 **Clinico** is a comprehensive healthcare management system with three distinct user roles:
-- **Patients** — Book appointments, view history, manage profile
+- **Patients** — Book appointments, view history, manage profile via Web or WhatsApp
 - **Doctors** — Manage schedule, view appointments, update profile
-- **Receptionists** — Monitor all appointments, search/filter, manage operations
+- **Receptionists** — Scan QR to activate clinic WhatsApp bot, monitor all appointments, search/filter, and manage operations
 
 ### Architecture
 
 ```
 ┌─────────────────┐       ┌─────────────────┐
-│  React Frontend │ ◄───► │  Bun Backend    │
+│  React Frontend │ ◄───► │  Bun.js Backend │
 │  (Port 5173)    │       │  (Port 3001)    │
 └─────────────────┘       └────────┬────────┘
                                    │
@@ -45,23 +48,26 @@ A multilingual, voice-enabled appointment automation platform for clinics and ho
 ## Features
 
 ### Core Features
-- **Phone-based OTP Authentication** — No passwords, JWT tokens
-- **Role-based Access Control** — Patient/Doctor/Receptionist roles
-- **Multi-step Registration** — Collect detailed profiles during onboarding
-- **Real-time Dashboard** — View appointments, stats, and schedules
-- **Smart Appointment Booking** — Conflict detection, rescheduling, cancellation
-- **Profile Management** — Edit personal, professional, and medical info
-- **WhatsApp Integration** — OTP delivery via WhatsApp bot
+- **Bun.js Powered REST API** — Fast runtime TypeScript backend using Bun.js & Prisma
+- **Receptionist Web QR Pairing** — QR code displayed on Receptionist Web UI to connect clinic WhatsApp number; connection status synced to database
+- **Patient WhatsApp Messaging** — Patients chat directly with the registered receptionist's WhatsApp number for instant automated booking
+- **Phone-based OTP Authentication** — No passwords, JWT tokens delivered via WhatsApp
+- **Role-based Access Control** — Dedicated Patient/Doctor/Receptionist roles
+- **Multi-step Registration** — Detailed onboarding for patients & doctors
+- **Real-time Dashboard** — Live appointment tables, KPI stats, and doctor schedules
+- **Smart Appointment Booking** — Conflict detection, slot generator, rescheduling, cancellation
+- **Voice Note Processing** — Speech-to-text voice note transcription via Sarvam AI
 
 ### Tech Stack
 
 | Component | Technologies |
 |-----------|-------------|
+| **Backend Engine** | **Bun.js** + TypeScript + Prisma ORM |
 | **Frontend** | React 19 + TypeScript + Vite |
-| **Backend** | Bun + TypeScript + Prisma |
 | **Database** | PostgreSQL |
-| **WhatsApp** | whatsapp-web.js + Puppeteer |
-| **Auth** | JWT + OTP (phone-based) |
+| **WhatsApp Bot** | Baileys.js / whatsapp-web.js |
+| **Voice AI** | Sarvam AI (Speech-to-Text) |
+| **Auth** | JWT + WhatsApp OTP |
 
 ---
 
@@ -146,15 +152,33 @@ PKG_TechBlitz26/
 - **Profile:** Edit professional details and bio
 
 ### Receptionist
-- **Registration:** Name only
-- **Dashboard:** All appointments table, search by doctor, filter by status
-- **Profile:** Edit name
+- **Registration:** Name & registered phone number
+- **WhatsApp Pairing:** Logs into Web App -> Live WhatsApp QR code generates on web interface -> Receptionist scans QR code via WhatsApp app to link number -> System connects bot and updates connection status in PostgreSQL
+- **Dashboard:** Monitor live appointments table, view WhatsApp bot connection status, search by doctor, filter by status, and manage schedules
+
+---
+
+## 🔄 Receptionist WhatsApp Pairing & Patient Messaging Workflow
+
+### 1. Receptionist WhatsApp Linking
+1. Receptionist logs into the Clinico web application using their registered phone number.
+2. The web interface requests a WhatsApp pairing QR code from the Bun.js backend / WhatsApp service.
+3. A dynamic QR code is rendered directly on the **Receptionist Web Dashboard**.
+4. The receptionist scans the QR code using the WhatsApp app on their mobile phone.
+5. The system pairs the account, activates the bot session on the receptionist's number, and updates the connection state in the **PostgreSQL database**.
+
+### 2. Patient WhatsApp Messaging Flow
+1. Patients send a text or voice message directly to the registered **Receptionist's WhatsApp Number**.
+2. The WhatsApp Bot intercepts the message and routes it to the **Bun.js backend**.
+3. Voice notes are sent to **Sarvam AI** for Speech-to-Text conversion and intent extraction.
+4. The Bun.js scheduling engine checks slot availability, processes booking/cancellation/reschedule requests, and updates PostgreSQL.
+5. Confirmation messages are automatically replied back to the patient on WhatsApp.
 
 ---
 
 ## API Documentation
 
-See **[backend/README.md](backend/README.md)** for complete API reference.
+See **[backend/README.md](backend/README.md)** for complete API reference (powered by Bun.js).
 
 **Key Endpoints:**
 - `POST /auth/request-otp` — Request OTP (delivered via WhatsApp)
@@ -166,13 +190,15 @@ See **[backend/README.md](backend/README.md)** for complete API reference.
 - `POST /patients/profile` — Create patient profile
 - `GET /doctors/me` — Get logged-in doctor's profile
 - `POST /doctors/me` — Create/update doctor profile
+- `GET /whatsapp/qr` — Generate WhatsApp pairing QR code for Receptionist interface
+- `GET /whatsapp/status` — Fetch receptionist WhatsApp bot connection status from database
 
 ---
 
 ## Authentication Flow
 
 1. User enters phone number on web app
-2. Backend generates 6-digit OTP
+2. Bun.js backend generates 6-digit OTP
 3. OTP delivered via WhatsApp bot (HTTP call to `http://localhost:3002/send-message`)
 4. User enters OTP on web app
 5. Backend verifies OTP and issues JWT token
